@@ -9,6 +9,15 @@ const PRODUCTS_LISTING_QUERY = graphql`
         node {
           id
           title
+          images {
+            localFile {
+              childImageSharp {
+                fixed(width: 200) {
+                  ...GatsbyImageSharpFixed_withWebp_tracedSVG
+                }
+              }
+            }
+          }
           publishedAt(formatString: "YYYY")
           description
           descriptionHtml
@@ -26,6 +35,7 @@ const PRODUCTS_LISTING_QUERY = graphql`
 
 const ProductsListing = () => {
     const { allShopifyProduct } = useStaticQuery(PRODUCTS_LISTING_QUERY)
+    console.log("allShopifyProduct", allShopifyProduct)
     return (
         <div>
           {allShopifyProduct.edges.map( edge => (
