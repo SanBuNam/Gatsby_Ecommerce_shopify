@@ -6,16 +6,13 @@ const ProductDetail = ({ product }) => {
   const [selectedVariant, setVariant] = useState(product.variants[0]);
   const { client } = useContext(StoreContext);
 
-  const addToCart = async () => {
+  const addToCart = async variantId => {
     const newCheckout = await client.checkout.create();
     // Not the variant ID
     // Shopify__ProductVariant__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8yOTQxNDM3NTUyMjQwMQ==
     const lineItems = [
       {
-        variantId: product.variants[0].id.replace(
-          "Shopify__ProductVariant__",
-          ""
-        ),
+        variantId: variantId.replace("Shopify__ProductVariant__", ""),
         quantity: 1
       }
     ];
@@ -23,9 +20,8 @@ const ProductDetail = ({ product }) => {
       newCheckout.id,
       lineItems
     );
-    console.log("addItems", addItems.webUrl);
+    window.open(addItems.webUrl, "_blank");
   };
-  addToCart();
 
   return (
     <div>
@@ -48,6 +44,7 @@ const ProductDetail = ({ product }) => {
           </option>
         ))}
       </select>
+      <button onClick={() => addToCart(selectedVariant.id)}>Buy Now</button>
     </div>
   );
 };
