@@ -6,11 +6,12 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sass`,
     {
       resolve: "gatsby-source-shopify",
       options: {
-        shopName: "good-daddy-shop",
-        accessToken: "99c10973dc22ab94c09cbe5a3c8e176e",
+        shopName: "softdavidlee",
+        accessToken: "c920597ddc729c0609fc097b3918a577",
         verbose: true,
         paginationSize: 250,
       }
