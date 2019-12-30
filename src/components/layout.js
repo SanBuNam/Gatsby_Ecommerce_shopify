@@ -1,9 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { useStaticQuery, graphql } from "gatsby";
-import Header from "./header";
-import { StoreContext, client } from "../context/storeContext";
-import "./layout.css";
+import React from "react"
+import PropTypes from "prop-types"
+import { useStaticQuery, graphql } from "gatsby"
+import Header from "./header"
+import styled from "styled-components"
+
+const StyledMain = styled.main`
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  background: var(--white);
+`
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -14,32 +19,42 @@ const Layout = ({ children }) => {
         }
       }
     }
-  `);
+  `)
 
   return (
-    <StoreContext.Provider value={{ client }}>
+    <>
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div
+      <StyledMain>
+        <div>menu</div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <div className="section" style={{ minHeight: "90vh" }}>
+            {children}
+          </div>
+        </div>
+      </StyledMain>
+      <footer
+        className="footer"
         style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0px 1.0875rem 1.45rem`,
-          paddingTop: 0
+          background: "var(--gray-85)",
+          color: "var(--black)",
+          padding: "10px 0",
+          textAlign: "center",
         }}
       >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
-    </StoreContext.Provider>
-  );
-};
+        Copyright © {new Date().getFullYear()},{` `}
+        <strong style={{ color: "var(--black)" }}>Good Daddy Shop</strong>
+      </footer>
+    </>
+  )
+}
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired
-};
+  children: PropTypes.node.isRequired,
+}
 
-export default Layout;
+export default Layout
