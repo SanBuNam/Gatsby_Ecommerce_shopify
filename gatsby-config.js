@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Gatsby shopify shop`,
-    author: `@softDavidLee`,
+    title: `Good Daddy Shop`,
+    description: `Collection of the best organic baby producs.`,
+    author: `@David's Creative Studio, LLC.`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -14,7 +14,7 @@ module.exports = {
         accessToken: "c920597ddc729c0609fc097b3918a577",
         verbose: true,
         paginationSize: 250,
-      }
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
@@ -31,10 +31,10 @@ module.exports = {
         name: `gatsby-starter-default`,
         short_name: `starter`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#d9d9d9`,
+        theme_color: `#d9d9d9`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/HeartFace.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
